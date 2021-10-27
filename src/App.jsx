@@ -9,8 +9,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import NoteAltTwoToneIcon from "@mui/icons-material/NoteAltTwoTone";
 import Grid from "@mui/material/Grid";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./components/theme";
 
 function App() {
   const localTask = localStorage.getItem("taskList")
@@ -19,30 +17,28 @@ function App() {
   const [taskList, taskListUpdate] = useState(localTask);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        <TaskListContext.Provider value={{ taskList, taskListUpdate }}>
-          <div className="card-holder">
-            <Card >
-              <CardContent>
-                <Grid container direction="row" alignItems="-">
-                  <Grid item>
-                    <NoteAltTwoToneIcon color="primary" />
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h5" component="div" color="primary">
-                      To Do List
-                    </Typography>
-                  </Grid>
+    <Container>
+      <TaskListContext.Provider value={{ taskList, taskListUpdate }}>
+        <div className="card-holder">
+          <Card>
+            <CardContent>
+              <Grid container direction="row" alignItems="-">
+                <Grid item>
+                  <NoteAltTwoToneIcon color="primary" />
                 </Grid>
-                <TaskField />
-                <TaskList />
-              </CardContent>
-            </Card>
-          </div>
-        </TaskListContext.Provider>
-      </Container>
-    </ThemeProvider>
+                <Grid item>
+                  <Typography variant="h5" component="div" color="primary">
+                    To Do List
+                  </Typography>
+                </Grid>
+              </Grid>
+              <TaskField />
+              <TaskList />
+            </CardContent>
+          </Card>
+        </div>
+      </TaskListContext.Provider>
+    </Container>
   );
 }
 
